@@ -1,0 +1,76 @@
+name: Daily Dependency Update
+
+# Updates JavaScript dependencies within their declared semver ranges every day,
+# records a dated report under logs/updates/, and commits the result directly to
+# a per-week branch (automated/dependency-updates-<ISO-year>-W<ISO-week>).
+#
+# Dependabot (see .github/dependabot.yml) handles the raw version bump PRs and,
+# together with GitHub's Dependabot security updates, the CVE remediation. This
+# workflow provides the daily aggregated, logged sweep on a single weekly branch.
+
+on:
+  schedule:
+    # Every day at 03:00 UTC.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-dependency-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Determine weekly branch
+        id: branch
+        run: echo "name=automated/dependency-updates-$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
+
+      - name: Check out (or create) the weekly branch
+        run: |
+          set -euo pipefail
+          BRANCH="${{ steps.branch.outputs.name }}"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            echo "Reusing existing weekly branch $BRANCH"
+            git fetch origin "$BRANCH"
+            git checkout -B "$BRANCH" "origin/$BRANCH"
+          else
+            echo "Creating new weekly branch $BRANCH from develop"
+            git checkout -B "$BRANCH" origin/develop
+          fi
+
+      - name: Run daily dependency update
+        id: update
+        run: ./scripts/ci/daily-dependency-update.sh
+
+      - name: Commit and push to weekly branch
+        run: |
+          set -euo pipefail
+          BRANCH="${{ steps.branch.outputs.name }}"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit today."
+            exit 0
+          fi
+          git commit -m "chore(deps): daily dependency update $(date -u +%F)"
+          git push origin "HEAD:${BRANCH}"
+          echo "Pushed daily update to ${BRANCH}"
