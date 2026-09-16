@@ -1,0 +1,82 @@
+name: Build Docker Image
+
+# Builds the Nginx Proxy Manager image from docker/Dockerfile and publishes it to
+# the GitHub Container Registry (GHCR) so it can be pulled and run with the
+# root-level docker-compose.yml, just like the original jc21 image.
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read build metadata
+        id: meta_vars
+        run: |
+          echo "version=$(cat .version)" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u '+%Y-%m-%d %H:%M:%S %Z')" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build frontend
+        working-directory: frontend
+        env:
+          CI: "true"
+          NODE_OPTIONS: "--openssl-legacy-provider"
+        run: |
+          yarn install --frozen-lockfile
+          yarn locale-compile
+          yarn build
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=ref,event=branch
+            type=sha,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILD_VERSION=${{ steps.meta_vars.outputs.version }}
+            BUILD_COMMIT=${{ steps.meta_vars.outputs.commit }}
+            BUILD_DATE=${{ steps.meta_vars.outputs.date }}

@@ -1,0 +1,40 @@
+# Production docker-compose for this fork of Nginx Proxy Manager.
+#
+# The image is built and published to the GitHub Container Registry by the
+# "Build Docker Image" GitHub Actions workflow (.github/workflows/docker-build.yml).
+#
+# Usage:
+#   docker compose pull        # get the latest published image
+#   docker compose up -d       # start Nginx Proxy Manager
+#
+# Admin UI:  http://127.0.0.1:81
+#
+# Override the image if you build your own or want a pinned tag, e.g.:
+#   NPM_IMAGE=ghcr.io/posta246/my-nginx-proxy-manager:develop docker compose up -d
+services:
+  app:
+    image: "${NPM_IMAGE:-ghcr.io/posta246/my-nginx-proxy-manager:latest}"
+    restart: unless-stopped
+    ports:
+      # Public HTTP Port:
+      - "80:80"
+      # Public HTTPS Port:
+      - "443:443"
+      # Admin Web Port:
+      - "81:81"
+    environment:
+      # Uncomment this if you want to change the location of
+      # the SQLite DB file within the container
+      # DB_SQLITE_FILE: "/data/database.sqlite"
+
+      # Uncomment this if IPv6 is not enabled on your host
+      # DISABLE_IPV6: "true"
+      TZ: "${TZ:-Etc/UTC}"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
