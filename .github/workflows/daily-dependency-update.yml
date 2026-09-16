@@ -1,12 +1,16 @@
 name: Daily Dependency Update
 
-# Updates JavaScript dependencies within their declared semver ranges every day,
-# records a dated report under logs/updates/, and commits the result directly to
-# a per-week branch (automated/dependency-updates-<ISO-year>-W<ISO-week>).
+# Every day this workflow:
+#   1. upgrades JavaScript dependencies within their declared semver ranges and
+#      writes a dated report to logs/updates/YYYY-MM-DD.md
+#      (see scripts/ci/daily-dependency-update.sh),
+#   2. commits the result to a dated branch (automated/dependency-updates-YYYY-MM-DD)
+#      and opens a pull request,
+#   3. merges that pull request into develop,
+#   4. creates a GitHub release named and tagged YYYY.MM.DD.
 #
-# Dependabot (see .github/dependabot.yml) handles the raw version bump PRs and,
-# together with GitHub's Dependabot security updates, the CVE remediation. This
-# workflow provides the daily aggregated, logged sweep on a single weekly branch.
+# Dependabot (.github/dependabot.yml) still handles the individual version-bump
+# PRs and, together with Dependabot security updates, CVE remediation.
 
 on:
   schedule:
@@ -16,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: daily-dependency-update
@@ -24,6 +29,8 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout develop
         uses: actions/checkout@v4
@@ -41,36 +48,68 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Determine weekly branch
-        id: branch
-        run: echo "name=automated/dependency-updates-$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
-
-      - name: Check out (or create) the weekly branch
+      - name: Compute run variables
+        id: vars
         run: |
-          set -euo pipefail
-          BRANCH="${{ steps.branch.outputs.name }}"
-          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-            echo "Reusing existing weekly branch $BRANCH"
-            git fetch origin "$BRANCH"
-            git checkout -B "$BRANCH" "origin/$BRANCH"
-          else
-            echo "Creating new weekly branch $BRANCH from develop"
-            git checkout -B "$BRANCH" origin/develop
-          fi
+          echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+          echo "tag=$(date -u +%Y.%m.%d)" >> "$GITHUB_OUTPUT"
+          echo "branch=automated/dependency-updates-$(date -u +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Create dated update branch
+        run: git checkout -B "${{ steps.vars.outputs.branch }}" origin/develop
 
       - name: Run daily dependency update
-        id: update
         run: ./scripts/ci/daily-dependency-update.sh
 
-      - name: Commit and push to weekly branch
+      - name: Commit and push changes
+        id: commit
         run: |
           set -euo pipefail
-          BRANCH="${{ steps.branch.outputs.name }}"
           git add -A
           if git diff --cached --quiet; then
-            echo "No changes to commit today."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes to commit today; skipping PR, merge and release."
             exit 0
           fi
-          git commit -m "chore(deps): daily dependency update $(date -u +%F)"
-          git push origin "HEAD:${BRANCH}"
-          echo "Pushed daily update to ${BRANCH}"
+          git commit -m "chore(deps): daily dependency update ${{ steps.vars.outputs.date }}"
+          git push --force-with-lease -u origin "${{ steps.vars.outputs.branch }}"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          BRANCH="${{ steps.vars.outputs.branch }}"
+          EXISTING="$(gh pr list --head "$BRANCH" --base develop --state open --json number --jq '.[0].number // empty')"
+          if [ -z "$EXISTING" ]; then
+            gh pr create \
+              --base develop \
+              --head "$BRANCH" \
+              --title "chore(deps): daily dependency update ${{ steps.vars.outputs.date }}" \
+              --body "Automated daily dependency & CVE update.
+
+          See the full report in \`logs/updates/${{ steps.vars.outputs.date }}.md\`."
+          else
+            echo "Reusing existing PR #$EXISTING for $BRANCH"
+          fi
+
+      - name: Merge pull request into develop
+        if: steps.commit.outputs.changed == 'true'
+        run: gh pr merge "${{ steps.vars.outputs.branch }}" --merge --delete-branch
+
+      - name: Create daily release
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.vars.outputs.tag }}"
+          NOTES_FILE="logs/updates/${{ steps.vars.outputs.date }}.md"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; skipping."
+            exit 0
+          fi
+          if [ -f "$NOTES_FILE" ]; then
+            gh release create "$TAG" --target develop --title "$TAG" --notes-file "$NOTES_FILE"
+          else
+            gh release create "$TAG" --target develop --title "$TAG" \
+              --notes "Automated daily dependency & CVE update ${{ steps.vars.outputs.date }}."
+          fi

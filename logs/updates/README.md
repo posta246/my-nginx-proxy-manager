@@ -5,6 +5,11 @@ and CVE update sweep performed by the
 [`Daily Dependency Update`](../../.github/workflows/daily-dependency-update.yml)
 GitHub Actions workflow.
 
+Each day the workflow commits the sweep to a dated branch
+(`automated/dependency-updates-YYYY-MM-DD`), opens a pull request, **merges it into
+`develop`**, and then creates a GitHub **release** named and tagged `YYYY.MM.DD`
+whose notes are the contents of that day's log file below.
+
 ## Naming convention
 
 Each log file is named after the (UTC) day it was produced, using the pattern:
