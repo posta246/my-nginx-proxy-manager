@@ -2,27 +2,20 @@ name: Daily Dependency Update
 
 # Every day this workflow:
 #   1. upgrades JavaScript dependencies within their declared semver ranges and
-#      writes a dated report to logs/updates/YYYY-MM-DD.md
-#      (see scripts/ci/daily-dependency-update.sh),
-#   2. commits the result to a dated branch (automated/dependency-updates-YYYY-MM-DD)
-#      and opens a pull request,
+#      writes a dated report to logs/updates/YYYY-MM-DD.md,
+#   2. commits the result to a dated branch and opens a pull request,
 #   3. merges that pull request into develop,
 #   4. creates a GitHub release named and tagged YYYY.MM.DD.
-#
-# Dependabot (.github/dependabot.yml) still handles the individual version-bump
-# PRs and, together with Dependabot security updates, CVE remediation.
 
 on:
   schedule:
-    # Every day at 03:00 UTC.
     - cron: "0 3 * * *"
   workflow_dispatch:
 
+# The privileged repository operations below use the GitHub App token.
+# Keep the default GITHUB_TOKEN minimally privileged.
 permissions:
-  contents: write
-  pull-requests: write
-  id-token: write
-  pages: write
+  contents: read
 
 concurrency:
   group: daily-dependency-update
@@ -31,14 +24,24 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
+      # Generate a short-lived installation token for the GitHub App.
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.DAILY_UPDATE_APP_ID }}
+          private-key: ${{ secrets.DAILY_UPDATE_APP_PRIVATE_KEY }}
+
+      # Passing the App token to checkout makes the git remote use the
+      # GitHub App credentials for subsequent git push operations.
       - name: Checkout develop
         uses: actions/checkout@v4
         with:
           ref: develop
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -47,7 +50,7 @@ jobs:
 
       - name: Configure git identity
         run: |
-          git config user.name "github-actions[bot]"
+          git config user.name "daily-dependency-update-new[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Compute run variables
@@ -58,7 +61,10 @@ jobs:
           echo "branch=automated/dependency-updates-$(date -u +%F)" >> "$GITHUB_OUTPUT"
 
       - name: Create dated update branch
-        run: git checkout -B "${{ steps.vars.outputs.branch }}" origin/develop
+        run: |
+          git checkout -B \
+            "${{ steps.vars.outputs.branch }}" \
+            origin/develop
 
       - name: Run daily dependency update
         run: ./scripts/ci/daily-dependency-update.sh
@@ -67,22 +73,43 @@ jobs:
         id: commit
         run: |
           set -euo pipefail
+
           git add -A
+
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changes to commit today; skipping PR, merge and release."
             exit 0
           fi
-          git commit -m "chore(deps): daily dependency update ${{ steps.vars.outputs.date }}"
-          git push --force-with-lease -u origin "${{ steps.vars.outputs.branch }}"
+
+          git commit \
+            -m "chore(deps): daily dependency update ${{ steps.vars.outputs.date }}"
+
+          git push \
+            --force-with-lease \
+            -u origin \
+            "${{ steps.vars.outputs.branch }}"
+
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Open pull request
         if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
+
           BRANCH="${{ steps.vars.outputs.branch }}"
-          EXISTING="$(gh pr list --head "$BRANCH" --base develop --state open --json number --jq '.[0].number // empty')"
+
+          EXISTING="$(
+            gh pr list \
+              --head "$BRANCH" \
+              --base develop \
+              --state open \
+              --json number \
+              --jq '.[0].number // empty'
+          )"
+
           if [ -z "$EXISTING" ]; then
             gh pr create \
               --base develop \
@@ -97,21 +124,37 @@ jobs:
 
       - name: Merge pull request into develop
         if: steps.commit.outputs.changed == 'true'
-        run: gh pr merge "${{ steps.vars.outputs.branch }}" --merge --delete-branch
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          gh pr merge \
+            "${{ steps.vars.outputs.branch }}" \
+            --merge \
+            --delete-branch
 
       - name: Create daily release
         if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
+
           TAG="${{ steps.vars.outputs.tag }}"
           NOTES_FILE="logs/updates/${{ steps.vars.outputs.date }}.md"
+
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "Release $TAG already exists; skipping."
             exit 0
           fi
+
           if [ -f "$NOTES_FILE" ]; then
-            gh release create "$TAG" --target develop --title "$TAG" --notes-file "$NOTES_FILE"
+            gh release create "$TAG" \
+              --target develop \
+              --title "$TAG" \
+              --notes-file "$NOTES_FILE"
           else
-            gh release create "$TAG" --target develop --title "$TAG" \
+            gh release create "$TAG" \
+              --target develop \
+              --title "$TAG" \
               --notes "Automated daily dependency & CVE update ${{ steps.vars.outputs.date }}."
           fi
