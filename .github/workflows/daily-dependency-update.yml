@@ -21,6 +21,8 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
+  pages: write
 
 concurrency:
   group: daily-dependency-update
