@@ -728,9 +728,9 @@
     tslib "^2.8.0"
 
 "@tabler/core@^1.5.1":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@tabler/core/-/core-1.6.0.tgz#fcc545fb3364ad62bee4c81856eced5a36cb2745"
-  integrity sha512-AdYNV9SVWQy1h3SvcvRG0WH/N7objsf4tzRFVcRdKq7EUogF5hH9EkJup5SycBMrs7g7fGZHdY9h/s18rgy/Ww==
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@tabler/core/-/core-1.6.1.tgz#eeca2b82f8be5200d97696aaad125a69fe0a57a8"
+  integrity sha512-lgmR9gcxRp5JlLxcmRi9Rz85JrEvH6Bz71KnlcPVSa97wtwQNjgSs3g3fxwbAlulHyRMghhIV04QUuW3pqDsIg==
   dependencies:
     "@popperjs/core" "^2.11.8"
 
@@ -790,11 +790,11 @@
     "@tanstack/query-core" "5.104.0"
 
 "@tanstack/react-store@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-store/-/react-store-0.11.1.tgz#e1e58036ffffa58f5b5d8826c2389f97502fac2c"
-  integrity sha512-HaIGKI3YLmjBYIvy5DFDY23oNaYZIsTZfngey07Uh5iLVJgM3bIGCnZeOFOqzjFld9JHWcaHJnasD/bKoGKwJQ==
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-store/-/react-store-0.11.2.tgz#14f81f98f43b04c34e76d348de3fe8488b3c3939"
+  integrity sha512-oj5O5DmiMWE+ih+SioX2ayC1kbK7d3fpLx0B75fPJr9nY3zU+hoW010yr64qXsY/9fyiLVE2bn5mGNV3owm8RQ==
   dependencies:
-    "@tanstack/store" "0.11.1"
+    "@tanstack/store" "0.11.2"
     use-sync-external-store "^1.6.0"
 
 "@tanstack/react-table@^9.2.4":
@@ -805,10 +805,10 @@
     "@tanstack/react-store" "^0.11.1"
     "@tanstack/table-core" "9.2.4"
 
-"@tanstack/store@0.11.1", "@tanstack/store@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@tanstack/store/-/store-0.11.1.tgz#063f634fe3cc925ad83704581a7be75301bec612"
-  integrity sha512-mzTOBhypOuDJAy/D8n2MfUZ1HFkXnmSETviRyhqEC8LUE7/IZQExOTxMANj3KjTofYTkFNpBY67qaVrT41YccA==
+"@tanstack/store@0.11.2", "@tanstack/store@^0.11.1":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/store/-/store-0.11.2.tgz#cea02e554a483c7334a64a3ca2c0e4b703ba8531"
+  integrity sha512-sJ4mjol8uQsHV0gOJzzjwXfh2Fwm+Sz0+8deqiTm4jGbMdjzNSW+xZCFm0kUa870uhd8yi+DpKnZb5Kc4apa0Q==
 
 "@tanstack/table-core@9.2.4":
   version "9.2.4"
@@ -997,9 +997,9 @@
   integrity sha512-c2AKvDT8ToxLIOUlN51gTiHXflsfIFisS4pO7pDPoKouJCESkhZnEy623gwP9laCy5lnLDAw1vAzu2vM2YLOrA==
 
 "@types/ws@^8.18.1":
-  version "8.18.1"
-  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.18.1.tgz#48464e4bf2ddfd17db13d845467f6070ffea4aa9"
-  integrity sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==
+  version "8.18.2"
+  resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.18.2.tgz#25d6321b30ef0fddf6cc7052b4eef9ce4e412b6e"
+  integrity sha512-67MQl+fpWKVTT1NYdnmo3U4sc/xPo/zQBncVnI74qmQa0z/b+1g6iYqNmGCPbxO+zz2aklb08a0oHfegiVd0/w==
   dependencies:
     "@types/node" "*"
 
