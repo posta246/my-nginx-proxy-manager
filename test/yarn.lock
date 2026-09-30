@@ -706,9 +706,9 @@ cypress-wait-until@^3.0.2:
   integrity sha512-iemies796dD5CgjG5kV0MnpEmKSH+s7O83ZoJLVzuVbZmm4lheMsZqAVT73hlMx4QlkwhxbyUzhOBUOZwoOe0w==
 
 cypress@^16.0.0:
-  version "16.1.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-16.1.0.tgz#b2496435864264360a8b70ec3bfe67154e6c3fa2"
-  integrity sha512-t8suSUVzQyHI7v6KhhA07M9ChftdfqVZNLCekhguIb+2f0fCmI8WAih5L0oGH7K6slapNduGy5zpJ+17LmSXkQ==
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-16.1.1.tgz#06b18d9b9bef693684059d5f540f5b7e99eb2356"
+  integrity sha512-T09qNpMKssD6eEMqqfywQ8OUub/VrNCvIUFAyQCfWsJ6o4CZ5Yeapce+WoZY9FXly6+3+pk7sjEB5voxduWQlQ==
   dependencies:
     "@cypress/request" "^4.0.0"
     "@cypress/xvfb" "^1.2.4"
@@ -2173,9 +2173,9 @@ supports-color@^8.1.1:
     has-flag "^4.0.0"
 
 systeminformation@^5.31.1:
-  version "5.33.13"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.33.13.tgz#6b5e8d2f3203e1e7bb5e4bb0e897c496179fc60e"
-  integrity sha512-GtyakkchTQKymM1WeAB652zi3rM1q00RKdc+jZe9KGstuc/mWUwAnQGN/RE5gVYvHIR8xYOUIUD9irVKDtA0wA==
+  version "5.33.14"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.33.14.tgz#78dc46eec9767a7ae0355ee56ab20b92ca1714e9"
+  integrity sha512-9liS0hutibZOitbibm90AK3WZe/1rGhNGZSw+/4TbY5moax6KkWwv1TKJmk9uSOD4bvPPg57VAuuNN+4edIpBg==
 
 tar@^7.5.13:
   version "7.5.22"
