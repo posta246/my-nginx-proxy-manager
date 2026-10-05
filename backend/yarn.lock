@@ -1506,9 +1506,9 @@ netmask@^2.0.2:
   integrity sha512-eonl3sLUha+S1GzTPxychyhnUzKyeQkZ7jLjKrBagJgPla13F+uQ71HgpFefyHgqrjEbCPkDArxYsjY8/+gLKA==
 
 node-abi@^3.3.0:
-  version "3.96.0"
-  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-3.96.0.tgz#8b038bc6cca97d6cec2e9aafdb81b900da1ff80d"
-  integrity sha512-rebQ/lz7i0EkoLzUVSrKRzA69zMkwLp95kKMWoMDkkM00Suxz0D7zEQPwRml5fQum24mj7bPvmlgLAmu2JCiYg==
+  version "3.97.0"
+  resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-3.97.0.tgz#6baca1e84394db3103d27b68c0fb03300c401731"
+  integrity sha512-6Pu8F0eXGZlyz0EepPJrWgWDcBI8rKt2Wj8exOJU1tjVbu/VyZy5ZaLYS5N+Jp/Y3IP3sIRKcIOElTu7uC6KKA==
   dependencies:
     semver "^7.3.5"
 
