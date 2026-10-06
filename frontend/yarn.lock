@@ -261,47 +261,47 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.12.tgz#afefe785949f16ac4cdd1e695935a321572dd56a"
   integrity sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==
 
-"@formatjs/cli-native-darwin-arm64@1.1.26":
-  version "1.1.26"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-darwin-arm64/-/cli-native-darwin-arm64-1.1.26.tgz#4171c1f51c83cbb5e9f7b33a27b13c604406fee6"
-  integrity sha512-NWngBSWyhM5BPi2wOZznDdZG5rCVJceWwNoOhYwn2mTyNMkjxYOuZaBta8/sdaVsLoQMdFCa9A0iLl6H1Rse0Q==
-
-"@formatjs/cli-native-linux-arm64-musl@1.0.24":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-arm64-musl/-/cli-native-linux-arm64-musl-1.0.24.tgz#91cefcd8002ea70828590a161b7b0d7d97f3a4a4"
-  integrity sha512-FQ64DANaY/bOP8GDt/gTylXoTNVmPEP0x6BkH0fqtJ9CeNmAfzXX6cfmvGq32tpP9hLoRFWDOD+Nf0J9u+7AKg==
-
-"@formatjs/cli-native-linux-arm64@1.2.26":
-  version "1.2.26"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-arm64/-/cli-native-linux-arm64-1.2.26.tgz#202e75c84662f3cce0db283e53ddeff09eb8253c"
-  integrity sha512-kxBNVqBkzIrD5zcj6s26mh4I0eYFKG8sS+Z6gURtjQvGIAn70Rd513ueKKPM7Bi0myUj3Xmmuu6JrR1AoFNBEw==
-
-"@formatjs/cli-native-linux-x64-musl@1.0.24":
-  version "1.0.24"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-x64-musl/-/cli-native-linux-x64-musl-1.0.24.tgz#8a72bba54bb1d162de6a546e8335742dea97159d"
-  integrity sha512-BoGbW8mstaiyBEccnN1+oEymuk1UfUyiXv0P2i6UkQ/Ebe9eme/S40cEZCAJV9RfkCAplEmjKzFXvSyYttPuYw==
-
-"@formatjs/cli-native-linux-x64@1.1.26":
-  version "1.1.26"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-x64/-/cli-native-linux-x64-1.1.26.tgz#1605b78488e50b95d866ce111e82eb1788bcdf80"
-  integrity sha512-WKG+IX95QvK3Dp2ZAtLDDqZTJJeEXMdlvH+9odJLfRYOF3C9R5J/uXkRKgNLwstI7HZH6FXDZN9eY3rL2l+lwg==
-
-"@formatjs/cli-native-win32-x64@1.1.27":
+"@formatjs/cli-native-darwin-arm64@1.1.27":
   version "1.1.27"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-win32-x64/-/cli-native-win32-x64-1.1.27.tgz#61b16f1b431a8be4d913f6c66ad860526139e77b"
-  integrity sha512-3zVqRflzXHW4ZiFfCgo4vniVCDy6zcKU/kc700bBioK0ohnpOuUxH+8T72RdftDQLxf8iTGig66zARYkcI30Ow==
+  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-darwin-arm64/-/cli-native-darwin-arm64-1.1.27.tgz#119bb131ac3044ac7bf7a5da69e49d6baf3e7129"
+  integrity sha512-mi51UphkvTOvs4gQ1j/EtiqZ87cKNJi8/ZGRwPpIKQ6I5G8EqHmArTKrY0mqZJS7zBJgonysrw6sJCt/Arcu2Q==
+
+"@formatjs/cli-native-linux-arm64-musl@1.0.25":
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-arm64-musl/-/cli-native-linux-arm64-musl-1.0.25.tgz#46f183f47b7eae12bfee75c5415d5a46dfc10371"
+  integrity sha512-Lys8sAs2oxRIVYQLz/0sIDbodgOUjz2Zz0xaJs1GGt0rF3t9uJmIYHyCKL9SnuEgLB/c9LXjcXm5uogWRrEFmg==
+
+"@formatjs/cli-native-linux-arm64@1.2.27":
+  version "1.2.27"
+  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-arm64/-/cli-native-linux-arm64-1.2.27.tgz#670b014570ffd29f7d885609cacca6a490ecdb6b"
+  integrity sha512-+mOIAjuJU+P6GcjScLJavMIy6+TfmnsihPAewXlqkt+mrsgoQjsK2I3+CSBYK3qnzFQb/ovgyZ5iF9QuwbhPIA==
+
+"@formatjs/cli-native-linux-x64-musl@1.0.25":
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-x64-musl/-/cli-native-linux-x64-musl-1.0.25.tgz#a67f1542b700b4e995e724cbf26b5c802f3d769d"
+  integrity sha512-w5AB4WIgKr6q+nSjRkaFt90m1htP5rDItNS0ZvOv29LRS+R1RNHIFCqBzqCHdJPXcrzi9ZjOfl82ogsP0QYLbg==
+
+"@formatjs/cli-native-linux-x64@1.1.27":
+  version "1.1.27"
+  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-linux-x64/-/cli-native-linux-x64-1.1.27.tgz#3ab1a8ee71dbb382fa17b31193d0784c875cf819"
+  integrity sha512-hreNaHpXZkh6avwIA1KGXMBhdfR0IGzxmkT3fYwgEUJbYl2NIMsOYgmEC8KuJpOYu8lNo3U9Rn76D5wooljJAw==
+
+"@formatjs/cli-native-win32-x64@1.1.28":
+  version "1.1.28"
+  resolved "https://registry.yarnpkg.com/@formatjs/cli-native-win32-x64/-/cli-native-win32-x64-1.1.28.tgz#17c6c9f2848f53c79471a9c344a1e5ec85d2f03d"
+  integrity sha512-0rAWY/VKPDB+I5Drks1wNGSxg3y0nSwg2Y2Q5Gkxwgx31oY5fiPMQ1D/jvN6RVLjv/GGNKB2fhXOKxYStOFxDg==
 
 "@formatjs/cli@^6.16.19":
-  version "6.16.32"
-  resolved "https://registry.yarnpkg.com/@formatjs/cli/-/cli-6.16.32.tgz#3decf297cc8f52e9ea7b6cb442280b27d6e711a5"
-  integrity sha512-b+juh9s0edVpdZg39g+8WyZthNWf2N4xjBfcJpKfk0pz5Mfc0IriObDJC2r9BW7EzPknHjC5QpeBcMDRJfgWUA==
+  version "6.16.33"
+  resolved "https://registry.yarnpkg.com/@formatjs/cli/-/cli-6.16.33.tgz#e9251287f7c48718b0f52e71d431f0f84689a8c0"
+  integrity sha512-jpTuUo2FvBU/xSKGp3DtHWD6R0A7ePzAn2Z1nEhU1E36ZdtWeW/ipc8KSBrQLyuAwk2vQsyoWFC4dZiXSzYIvQ==
   optionalDependencies:
-    "@formatjs/cli-native-darwin-arm64" "1.1.26"
-    "@formatjs/cli-native-linux-arm64" "1.2.26"
-    "@formatjs/cli-native-linux-arm64-musl" "1.0.24"
-    "@formatjs/cli-native-linux-x64" "1.1.26"
-    "@formatjs/cli-native-linux-x64-musl" "1.0.24"
-    "@formatjs/cli-native-win32-x64" "1.1.27"
+    "@formatjs/cli-native-darwin-arm64" "1.1.27"
+    "@formatjs/cli-native-linux-arm64" "1.2.27"
+    "@formatjs/cli-native-linux-arm64-musl" "1.0.25"
+    "@formatjs/cli-native-linux-x64" "1.1.27"
+    "@formatjs/cli-native-linux-x64-musl" "1.0.25"
+    "@formatjs/cli-native-win32-x64" "1.1.28"
 
 "@formatjs/fast-memoize@3.1.7":
   version "3.1.7"
@@ -735,16 +735,16 @@
     "@popperjs/core" "^2.11.8"
 
 "@tabler/icons-react@^3.46.0":
-  version "3.48.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-3.48.0.tgz#d9459d69f4933f753ec0d7658d4d431c22781a85"
-  integrity sha512-OCeAlpaWHEMV+EsgdVeGQ3YuKfmfnThZhc++CaZ/ujYzi5+/DONDQlX4OGvH1ikYhIfmc0grI4otJgHy7QAvng==
+  version "3.49.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-3.49.0.tgz#bdfbd8fb2ede00dd17e91e9d7eff6f306d59f55f"
+  integrity sha512-Um59pm5RVNUaQjFUtG0r4oYJbZuBS3tGugAA2tgBg0WufMk34Eio3nsO30RUkLuL2giYPQUNdY9HvqltLLYyNA==
   dependencies:
-    "@tabler/icons" "3.48.0"
+    "@tabler/icons" "3.49.0"
 
-"@tabler/icons@3.48.0":
-  version "3.48.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.48.0.tgz#08ad2b8c328ef5115b10ea306a52b6d9271f7b32"
-  integrity sha512-lQk06gVHNVBnJp0UOgtth54mcZBJM7rdYKsAxKOProj1bbSAx+/xiuOWfHlyvgdL3M+Y+I0HINrjHa3ygp8eXQ==
+"@tabler/icons@3.49.0":
+  version "3.49.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.49.0.tgz#8ad023d3847540250f318a73f80431f1b69d83ff"
+  integrity sha512-l+GnSkFETx0U26icxv1VUFnxxiTqXfCcVRiRAnyMwibupM2S2L/hSaZ9gmSgz01rkrsH/93NvLsxykqdanc6lw==
 
 "@tanstack/match-sorter-utils@^9.1.2":
   version "9.2.6"
@@ -3115,9 +3115,9 @@ vite-plugin-checker@^0.14.5:
     tiny-invariant "^1.3.3"
 
 "vite@^6.0.0 || ^7.0.0 || ^8.0.0", vite@^8.2.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-8.3.2.tgz#391d1e62761b343435b8e4b512e449a4f90670a3"
-  integrity sha512-SQr1x6W5vVSbROg7vsyXIaxK9b0G7zsT68acdWWRmnBUsgDieLCRG+Rep9WdZgcposvv/GSnr4GUUBqB3vXq6w==
+  version "8.3.3"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-8.3.3.tgz#12651726ab1cca0a9e1e649e3cb4dca5b6b006a9"
+  integrity sha512-cTAldKPImjg6c+gk48U19POPn3GCBzZwpdsN8ZMEEcbpes+6/wvfqUd0C2y3qYY4wsj8PwgFwrZ/1jBPVttMSg==
   dependencies:
     lightningcss "^1.33.0"
     picomatch "^4.0.7"
