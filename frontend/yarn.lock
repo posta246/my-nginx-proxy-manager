@@ -2365,9 +2365,9 @@ postcss-simple-vars@^7.0.1:
   integrity sha512-5GLLXaS8qmzHMOjVxqkk1TZPf1jMqesiI7qLhnlyERalG0sMbHIbJqrcnrpmZdKCLglHnRHoEBB61RtGTsj++A==
 
 postcss@^8.5.26, postcss@^8.5.29:
-  version "8.5.30"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.30.tgz#f76f192357d2b7026b651fd2c7baa60d05325a9e"
-  integrity sha512-zkd+e9S1AQHhmaBKye9zlFHWjOwVgqXl1q3ECYy8561K7qxR2cREf/STLskulBFd78k6AOFeA+ff1TtEzk9bAA==
+  version "8.5.31"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.31.tgz#d44731fa02f8ae8371629ec7220e2ae0dbdf23ec"
+  integrity sha512-YUbWYCgErwnMAVkjUnYa+KlMBzGpHwiIt/DE7f0G33AuX2LH9UcTk6KgWxd3zRU+pN3u/C+Xl3EnMLM4Hea7Sg==
   dependencies:
     nanoid "^3.3.20"
     picocolors "^1.1.1"
@@ -2772,14 +2772,14 @@ scheduler@^0.28.0:
   integrity sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==
 
 seroval-plugins@~1.6.8:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/seroval-plugins/-/seroval-plugins-1.6.10.tgz#11fe1df0146c50f4e534df0445e51b8f683da79e"
-  integrity sha512-zKlRcrRRgB7zeMQreqDFLn9uT/xqPWP7irZqafeN9UFmbUGdN5lQCjxw/c+ZRLm/A6fgdCbFWdj0dWqgtle77g==
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/seroval-plugins/-/seroval-plugins-1.6.11.tgz#0ef1dd2a2d76eb4132c684b6f90cbea8bc8388c6"
+  integrity sha512-LmB3nd8pL39jKHKvnpTUjcjBtNwR8MLty/ydAR8qbfXt5j6/6KqR1atuw8cVmD2/lDxAkvAwq5tI/HsisD9Fqg==
 
 seroval@~1.6.8:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/seroval/-/seroval-1.6.10.tgz#7c3ed349a55241e8a51d02f02e4a6868ee654cf6"
-  integrity sha512-GKZbsOHLV6GToR1rNQc9CZ+s8HZTS5X5N9D++z/xUh4SV9UwepLzqc60pKJTEEfEHzGdtWTXHpp+GhLoGLT1UA==
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/seroval/-/seroval-1.6.11.tgz#61730b3ce820c3ad3a822488a5fb77557758e24c"
+  integrity sha512-hpb6XnMCGN/A+79Uf8V7/iTGkyyyazNn5X0CoCAp7Uy9vT3RT8jZ9GLcnxGoVjg3P8AArbe4ZVHq6C8oT2a0kA==
 
 set-cookie-parser@^2.6.0:
   version "2.7.2"
