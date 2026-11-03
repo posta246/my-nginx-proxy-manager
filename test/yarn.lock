@@ -1274,9 +1274,9 @@ global-dirs@^3.0.0:
     ini "2.0.0"
 
 globals@^17.12.0:
-  version "17.13.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-17.13.0.tgz#ab2134b5ededbf2fbe2831dd0acc36f4f1ddeac5"
-  integrity sha512-RwMTC61u7hrG3ZJMkZQOK4JLJrKS8QtoTii63EmWvFXHqycY9FObBJQCbsLxSO8kjKhWE5kV1GC+Vb1g3RI0Zg==
+  version "17.14.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-17.14.0.tgz#5bbbe515622ba24229bd94d4a7c441740e1b50dd"
+  integrity sha512-UtdkTVyAJePQv0J2M9Xe4L0ruNSDV314XiIJsADI2Zf40bcdAonE/D/OhAU8AT99oij9mhLByb+NvA3QWZYgCg==
 
 globby@^11.0.4:
   version "11.1.0"
@@ -1989,9 +1989,9 @@ safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 semver@^7.6.3:
-  version "7.8.5"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.8.5.tgz#39b646037dd50c14fb451e7e4cac58ed8b863f69"
-  integrity sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==
+  version "7.8.6"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.8.6.tgz#67c0cda133a3ceb6f70b803e67625bf969000424"
+  integrity sha512-9lpSSU4Mly3mrtruwLs1eLK6+gzbzqeBFwRNjIjE+9LuDpWdYctrQlQ3ej1Ilgi7gknpsTRnPoLP8DpCHqHIJw==
 
 serialize-javascript@^7.1.1:
   version "7.1.4"
