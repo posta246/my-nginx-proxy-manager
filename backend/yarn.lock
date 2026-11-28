@@ -1155,9 +1155,9 @@ interpret@^2.2.0:
   integrity sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==
 
 ip-address@^10.1.1:
-  version "10.7.6"
-  resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-10.7.6.tgz#e3c06961cedf352494c06c916c696cfdb11068dd"
-  integrity sha512-00LYkM6byILa9eQIx6qoaXCM40xTLd56AZ4vyaPW3YTyb49VZYPo5xsiAq4tuQ54GH4R7gVdYScJ1B7B77PuTg==
+  version "10.7.7"
+  resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-10.7.7.tgz#19be86d3be85c575049cf320df9dbd04841f7c72"
+  integrity sha512-He15rAs4jip5AEAz7XM9L+S6Y8LBMIDj6YewbYuJfmDnOCKWb+3TLOGnHFBTAIW7wpm5ohtZ+Xyo5PEaG+O2vQ==
 
 ipaddr.js@1.9.1:
   version "1.9.1"
@@ -1551,9 +1551,9 @@ node-gyp@12.x:
     which "^6.0.0"
 
 node-rsa@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/node-rsa/-/node-rsa-2.0.0.tgz#f55c99fb3ffef08b24bab414b7d2f24b30d12081"
-  integrity sha512-7yfzccmBd5rm7pALJf709tPwLL987WvdT7LC/QK5Oxa5S2aabdBPjxRDxhWKkbfCc9/FiC82lwSc+ulGZHH44g==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/node-rsa/-/node-rsa-2.1.0.tgz#daafd2e1da49b0d0fd2139031f4e4f6807940256"
+  integrity sha512-9qSnw99WpaCPWOgOumlO22JhUhp4Gj+SrbSl1RyhacraW225kGc/tFiiVNl8Kj4eAnskSVbjCHnug72gl/a1wQ==
   dependencies:
     "@noble/hashes" "^2.2.0"
 
